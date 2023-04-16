@@ -1,11 +1,15 @@
 package com.example.catalogfilm.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Director {
     @Id
@@ -17,5 +21,6 @@ public class Director {
     private String country;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Film> filmList;
 }
