@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +16,13 @@ public class FilmServiceImpl implements FilmService {
 
     @SneakyThrows(NotFoundException.class)
     @Override
-    public Film getFilm(UUID filmUuid) {
-        return filmRepository.findById(filmUuid).orElseThrow(NotFoundException::new);
+    public Film getFilm(Integer filmId) {
+        return filmRepository.findById(filmId).orElseThrow(NotFoundException::new);
+    }
+
+    @Override
+    public List<Film> getAllFilms() {
+        return filmRepository.findAll();
     }
 
     @Override

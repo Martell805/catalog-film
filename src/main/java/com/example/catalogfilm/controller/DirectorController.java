@@ -5,7 +5,6 @@ import com.example.catalogfilm.service.DirectorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -19,7 +18,7 @@ public class DirectorController {
     }
 
     @GetMapping
-    public ResponseEntity<Director> getDirector(@RequestParam("directorUuid") UUID directorUuid) {
-        return ResponseEntity.ok(directorService.getDirector(directorUuid));
+    public ResponseEntity<Director> getDirector(@RequestParam Integer directorId) {
+        return ResponseEntity.ok(directorService.getDirector(directorId));
     }
 }

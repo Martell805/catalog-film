@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +15,8 @@ public class DirectorServiceImpl implements DirectorService {
 
     @SneakyThrows(NotFoundException.class)
     @Override
-    public Director getDirector(UUID directorUuid) {
-        return directorRepository.findById(directorUuid).orElseThrow(NotFoundException::new);
+    public Director getDirector(Integer directorId) {
+        return directorRepository.findById(directorId).orElseThrow(NotFoundException::new);
     }
 
     @Override
