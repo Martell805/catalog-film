@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
@@ -22,20 +21,20 @@ class FilmControllerTest {
     @Mock
     private FilmService filmService;
 
-    private UUID uuid1;
+    private Integer id1;
     private Film film1;
 
     @BeforeEach
     public void setOut() {
-        uuid1 = UUID.randomUUID();
-        film1 = new Film(uuid1, "Film1", GenreEnum.HORROR, 5);
+        id1 = 1;
+        film1 = new Film(id1, "Film1", GenreEnum.HORROR, 5);
     }
 
     @Test
     public void getExistingFilmTest() {
-        when(filmService.getFilm(uuid1)).thenReturn(film1);
+        when(filmService.getFilm(id1)).thenReturn(film1);
 
-        Film actual = filmController.getFilm(uuid1).getBody();
+        Film actual = filmController.getFilm(id1).getBody();
         Film expected = film1;
 
         assertThat(actual).isNotNull();
@@ -49,9 +48,9 @@ class FilmControllerTest {
 
     @Test
     public void getNonExistingFilmTest() {
-        when(filmService.getFilm(uuid1)).thenReturn(null);
+        when(filmService.getFilm(id1)).thenReturn(null);
 
-        Film actual = filmController.getFilm(uuid1).getBody();
+        Film actual = filmController.getFilm(id1).getBody();
 
         assertThat(actual).isNull();
     }
